@@ -45,9 +45,6 @@ function linkedListGenerator(){
             }else if(count === num){
                 return currentNode
             }
-            
-            
-            
         }
         return false
     }
