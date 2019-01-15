@@ -6,9 +6,7 @@
 function linkedListGenerator(){
     let head = null;
     let tail = null;
-
     function getHead(){
-        
         return head
     }
 
@@ -18,90 +16,79 @@ function linkedListGenerator(){
 
     function add(entry){
         let newNode = {
-            value: entry,
-            next: null
+            value:entry,
+            next:null
         }
-        if(!head){
+        if(tail === null){
+            
             head = newNode;
-            tail=newNode
+            tail = newNode;
         }
         else{
-            tail.next=newNode;
-            tail=newNode
+            tail.next = newNode
+            tail = newNode
         }
         return tail
     }
-
+    
     function get(num){
-        let count = 0;
         let currentNode = head;
-        while(currentNode){
-            if(num===count){
+        let count = 0;
+        if(num===0){
+            return head
+        }
+        while(currentNode !== null){
+            currentNode = currentNode.next;
+            count++
+            if(currentNode === null){
+                return false
+            }else if(count === num){
                 return currentNode
             }
-            count = count + 1;
-            currentNode = currentNode.next
-
+            
+            
+            
         }
         return false
     }
-    
+
     function remove(num){
         let deleteMe = get(num);
-        let prevNode = get(num-1)
-        let nextNode = get(num+1)
-    //    console.log(head)
-        if(num === 0){
-            head = nextNode
-        }
-        else if(head === null){
+        let prevNode = get(num-1);
+        let nextNode = get(num+1);
+        if(deleteMe === false){
             return false
+        }else if(num === 0){
+            head = nextNode;
+            
         }
-        else if(deleteMe === false){
-            return false
-        }else if(deleteMe.next === null){
+        else if(deleteMe.next === null){
             prevNode.next = null;
             tail = prevNode
         }else{
-            prevNode.next=nextNode
+        prevNode.next = nextNode;
         }
-        
-        // console.log(head)
-        
-        
     }
 
     function insert(entry,num){
-        console.log(head)
         console.log(num)
-        let nextNode = get(num);
-        let insertAfter = get(num-1);
-           
+        console.log(head)
+        let newNode = {
+            value:entry,
+            next:null
+        }  
+        let next = get(num)
+        let prevNode = get(num-1);
+        if(num === 0){
+            head=newNode;
             
-         if(num === 0){
-            let newNode = {
-                value:entry,
-                next:nextNode
-            }
-            head = newNode
-            console.log(newNode)
             
-        }
-        else if(insertAfter === false){
+        }else if(next === false){
             return false
         }
-        else{
-            let newNode = {
-                value:entry,
-                next:nextNode
-            }
-            insertAfter.next = newNode;
-           
-        }
-       
-
+        prevNode.next=newNode;
+        newNode.next=next
     }
-
 
     return{
         getHead,
@@ -110,6 +97,7 @@ function linkedListGenerator(){
         get,
         remove,
         insert
+
 
     }
 }
