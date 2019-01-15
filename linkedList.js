@@ -51,7 +51,6 @@ function linkedListGenerator(){
         let prevNode = get(num-1)
         let nextNode = get(num+1)
     //    console.log(head)
-        
         if(num === 0){
             head = nextNode
         }
